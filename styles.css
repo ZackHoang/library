@@ -1,11 +1,13 @@
 * {
     padding: 0;
     margin: 0;
+    text-align: center;
 }
 
+
 #header {
-    grid-column: 1 / 4;
     text-align: center;
+    padding: 20px;
 }
 
 .book_cards_container {
@@ -19,4 +21,25 @@
 .book_cards {
     border: 2px solid black;
     padding: 20px;
+}
+
+button {
+    width: 100px;
+    font-size: 20px; 
+    text-align: center;
+}
+
+dialog {
+    justify-self: center;
+    align-self: center;
+}
+
+fieldset {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    gap: 20px;
+    border: unset;  
 }
