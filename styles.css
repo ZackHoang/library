@@ -30,9 +30,11 @@ button {
 }
 
 dialog {
-    justify-self: center;
+    border: unset;
     align-self: center;
+    justify-self: center;
 }
+
 
 fieldset {
     display: flex; 
