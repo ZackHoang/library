@@ -1,5 +1,6 @@
 const myLibrary = []; 
 const container = document.querySelector(".book_cards_container"); 
+const container_length = document.querySelector(".book_cards_container").childElementCount; 
 const dialog = document.querySelector("dialog"); 
 const showButton = document.querySelector("dialog + button"); 
 const confirmButton = document.getElementById("confirm"); 
@@ -23,7 +24,7 @@ confirmButton.addEventListener("click", (event) => {
         addBookToLibrary(myLibrary); 
         userBook.value = ' '; 
         userAuthor.value = ' '; 
-        userPages.value = 0;  
+        userPages.value = 0;
         dialog.close(); 
     }  
 })
@@ -48,7 +49,7 @@ function addBookToLibrary(array) {
     for (let i = 0; i < array.length; i++) {
         //Create a new div within book_cards_container for every book added
         const card = document.createElement("div");
-        card.classList.add("book_cards");
+        card.classList.add(`book_cards_${i}`);
         container.appendChild(card); 
         //Create texts display for each div
         const title = document.createElement("h3"); 
@@ -70,7 +71,12 @@ function addBookToLibrary(array) {
                 read.textContent = "Not Read"; 
             }
         }
+        //Delete every children except the last one
+        if (i > 0) {
+            container.removeChild(container.children[i-1]); 
+        }
     }
+    
 }
 
 // addBookToLibrary(myLibrary); 
