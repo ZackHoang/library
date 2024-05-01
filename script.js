@@ -24,6 +24,7 @@ confirmButton.addEventListener("click", (event) => {
         userBook.value = ' '; 
         userAuthor.value = ' '; 
         userPages.value = 0;
+        userRead.checked = false; 
         dialog.close(); 
     }  
 })
@@ -44,24 +45,28 @@ function Book(title, author, pages, read) {
 console.log(myLibrary); 
 
 function addBookToLibrary(array) {
-    //Loop through items
+    //Delete everything first before displaying all books again
     while (container.hasChildNodes()) {
         container.removeChild(container.firstChild); 
     }
+    //Loop through items
     for (let i = 0; i < array.length; i++) {
         //Create a new div within book_cards_container for every book added
         const card = document.createElement("div");
         card.classList.add("book_cards");
+        card.setAttribute("data-index", i); 
         container.appendChild(card); 
         //Create texts display for each div
         const title = document.createElement("h3"); 
         const author = document.createElement("h3"); 
         const pages = document.createElement("h3"); 
-        const read = document.createElement("h3");  
+        const read = document.createElement("button");  
+        const remove = document.createElement("button"); 
         card.appendChild(title); 
         card.appendChild(author); 
         card.appendChild(pages); 
         card.appendChild(read); 
+        card.appendChild(remove); 
         //Display content of each book in each card
         for (let j = 0; j < Object.keys(array[i]).length; j++) {
             title.textContent = `Title: ${array[i].title}`; 
@@ -72,17 +77,14 @@ function addBookToLibrary(array) {
             } else {
                 read.textContent = "Not Read"; 
             }
+            remove.textContent = "Remove"; 
         }
-        //Delete every children except the last one
-        // container.removeChild(container.children[i-1]);
+        remove.addEventListener("click", () => {
+            card.remove();
+            myLibrary.splice(card.dataset.index, 1); 
+            console.log(myLibrary);   
+        })
+        // console.log(card.dataset); 
     }
-    console.log(container.children.length); 
-    // if (container.children.length > 1) {
-    //     for (let k = container.children.length - 1; k < array.length; k--) {
-    //         container.removeChild(container.children[k]);   
-    //     }
-    // }
-    // console.log(container.children);
 }
 
-// addBookToLibrary(myLibrary); 
