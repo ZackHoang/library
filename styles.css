@@ -10,11 +10,11 @@
     padding: 20px;
 }
 
-.book_cards_container {
+#book_cards_container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
-    gap: 50px; 
+    gap: 30px; 
     padding: 20px;
 }
 

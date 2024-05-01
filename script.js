@@ -1,6 +1,5 @@
 const myLibrary = []; 
-const container = document.querySelector(".book_cards_container"); 
-const container_length = document.querySelector(".book_cards_container").childElementCount; 
+const container = document.getElementById("book_cards_container"); 
 const dialog = document.querySelector("dialog"); 
 const showButton = document.querySelector("dialog + button"); 
 const confirmButton = document.getElementById("confirm"); 
@@ -46,10 +45,13 @@ console.log(myLibrary);
 
 function addBookToLibrary(array) {
     //Loop through items
+    while (container.hasChildNodes()) {
+        container.removeChild(container.firstChild); 
+    }
     for (let i = 0; i < array.length; i++) {
         //Create a new div within book_cards_container for every book added
         const card = document.createElement("div");
-        card.classList.add(`book_cards_${i}`);
+        card.classList.add("book_cards");
         container.appendChild(card); 
         //Create texts display for each div
         const title = document.createElement("h3"); 
@@ -72,11 +74,15 @@ function addBookToLibrary(array) {
             }
         }
         //Delete every children except the last one
-        if (i > 0) {
-            container.removeChild(container.children[i-1]); 
-        }
+        // container.removeChild(container.children[i-1]);
     }
-    
+    console.log(container.children.length); 
+    // if (container.children.length > 1) {
+    //     for (let k = container.children.length - 1; k < array.length; k--) {
+    //         container.removeChild(container.children[k]);   
+    //     }
+    // }
+    // console.log(container.children);
 }
 
 // addBookToLibrary(myLibrary); 
