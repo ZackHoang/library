@@ -15,7 +15,7 @@ showButton.addEventListener("click", () => {
 //When press submit, new Book object is created, then added into myLibrary array 
 confirmButton.addEventListener("click", (event) => { 
     //If any input field is not empty, register a new book. Else, keep asking user for information 
-    if (userBook.value.length != 0 && userAuthor.value.length != 0 && userPages.value.length != 0) {
+    if (userBook.value.length != 0 && userAuthor.value.length != 0 && userPages.value > 0) {
         event.preventDefault(); 
         const book = new Book(userBook.value, userAuthor.value, userPages.value, userRead.checked); 
         myLibrary.push(book); 
