@@ -1,5 +1,5 @@
 const myLibrary = []; 
-const container = document.getElementById("book_cards_container"); 
+const container = document.querySelector(".book_cards_container"); 
 const dialog = document.querySelector("dialog"); 
 const showButton = document.querySelector("dialog + button"); 
 const confirmButton = document.getElementById("confirm"); 
@@ -44,6 +44,23 @@ function Book(title, author, pages, read) {
 // myLibrary.push(book1, book2, book3);
 console.log(myLibrary); 
 
+function resetDataIndices(card) {
+    //While a card has subsequent cards on its right
+        //save index of next card in a var
+        //decrement that next card index by one
+        //repeat until no more cards remaining 
+    let currentCard = card; 
+    for (let i = card.dataset.index; i < container.children.length - 1; i++) {
+        console.log(`current card is: ${currentCard}`); 
+        console.log(`current card index is: ${currentCard.dataset.index}`); 
+        let nextCard = currentCard.nextSibling;
+        console.log(`next card is: ${nextCard}`); 
+        console.log(`next card index is: ${nextCard.dataset.index}`);  
+        nextCard.dataset.index -= 1;
+        currentCard = nextCard;  
+    }
+}
+
 function addBookToLibrary(array) {
     //Delete everything first before displaying all books again
     while (container.hasChildNodes()) {
@@ -80,8 +97,10 @@ function addBookToLibrary(array) {
             remove.textContent = "Remove"; 
         }
         remove.addEventListener("click", () => {
+            console.log(card.dataset.index);
+            resetDataIndices(card);
             card.remove();
-            myLibrary.splice(card.dataset.index, 1); 
+            myLibrary.splice(card.dataset.index, 1);  
             console.log(myLibrary);   
         })
         // console.log(card.dataset); 
