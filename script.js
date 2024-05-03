@@ -42,7 +42,7 @@ function Book(title, author, pages, read) {
 // const book2 = new Book("my title 2", "my author 2", "my pages 2", false);
 // const book3 = new Book("my title 3", "my author 3", "my pages 3", false); 
 // myLibrary.push(book1, book2, book3);
-console.log(myLibrary); 
+// console.log(myLibrary); 
 
 function resetDataIndices(card) {
     //While a card has subsequent cards on its right
@@ -51,11 +51,11 @@ function resetDataIndices(card) {
         //repeat until no more cards remaining 
     let currentCard = card; 
     for (let i = card.dataset.index; i < container.children.length - 1; i++) {
-        console.log(`current card is: ${currentCard}`); 
-        console.log(`current card index is: ${currentCard.dataset.index}`); 
+        // console.log(`current card is: ${currentCard}`); 
+        // console.log(`current card index is: ${currentCard.dataset.index}`); 
         let nextCard = currentCard.nextSibling;
-        console.log(`next card is: ${nextCard}`); 
-        console.log(`next card index is: ${nextCard.dataset.index}`);  
+        // console.log(`next card is: ${nextCard}`); 
+        // console.log(`next card index is: ${nextCard.dataset.index}`);  
         nextCard.dataset.index -= 1;
         currentCard = nextCard;  
     }
@@ -91,19 +91,36 @@ function addBookToLibrary(array) {
             pages.textContent = `Pages: ${array[i].pages}`; 
             if (array[i].read == true) {
                 read.textContent = "Read"; 
+                read.style.color = "green"; 
             } else {
                 read.textContent = "Not Read"; 
+                read.style.color = "red"; 
             }
             remove.textContent = "Remove"; 
         }
         remove.addEventListener("click", () => {
             console.log(card.dataset.index);
             resetDataIndices(card);
-            card.remove();
+            card.remove(); 
             myLibrary.splice(card.dataset.index, 1);  
             console.log(myLibrary);   
         })
-        // console.log(card.dataset); 
+
+        read.addEventListener("click", () => {
+            if (read.textContent == "Read") {
+                read.textContent = "Not Read"; 
+                read.style.color = "red"; 
+                myLibrary[card.dataset.index].read = false; 
+                // console.log(myLibrary);
+                // console.log(card);  
+            } else if (read.textContent == "Not Read") {
+                read.textContent = "Read"; 
+                read.style.color = "green"; 
+                myLibrary[card.dataset.index].read = true; 
+                // console.log(myLibrary); 
+                // console.log(card); 
+            }
+        })
     }
 }
 
