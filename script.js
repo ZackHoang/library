@@ -21,8 +21,8 @@ confirmButton.addEventListener("click", (event) => {
         myLibrary.push(book); 
         console.log(myLibrary); 
         addBookToLibrary(myLibrary); 
-        userBook.value = ' '; 
-        userAuthor.value = ' '; 
+        userBook.value = ''; 
+        userAuthor.value = ''; 
         userPages.value = 0;
         userRead.checked = false; 
         dialog.close(); 
